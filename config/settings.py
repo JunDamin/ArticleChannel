@@ -41,7 +41,7 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-THIRD_PARTY_APPS = ["django_countries"]
+THIRD_PARTY_APPS = ["django_countries", "import_export"]
 
 PROJECT_APPS = ["core.apps.CoreConfig", "users.apps.UsersConfig", "articles.apps.ArticlesConfig"]
 
