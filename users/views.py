@@ -69,7 +69,7 @@ def complete_verification(request, key):
 
 def github_login(request):
     client_id = os.getenv("GH_ID")
-    redirect_uri = "http://127.0.0.1:8000/users/login/github/callback"
+    redirect_uri = "http://jundamin.pythonanywhere.com/users/login/github/callback"
     return redirect(
         f"https:github.com/login/oauth/authorize?client_id={client_id}&redirect_uri={redirect_uri}&scope=read:user"
     )
@@ -140,7 +140,7 @@ def github_callback(request):
 
 def kakao_login(request):
     client_id = os.getenv("KAKAO_ID")
-    redirect_uri = "http://127.0.0.1:8000/users/login/kakao/callback"
+    redirect_uri = "http://jundamin.pythonanywhere.com/users/login/kakao/callback"
     return redirect(
         f"https://kauth.kakao.com/oauth/authorize?client_id={client_id}&redirect_uri={redirect_uri}&response_type=code"
     )
@@ -154,7 +154,7 @@ def kakao_callback(request):
     try:
         code = request.GET.get("code")
         client_id = os.getenv("KAKAO_ID")
-        redirect_uri = "http://127.0.0.1:8000/users/login/kakao/callback"
+        redirect_uri = "http://jundamin.pythonanywhere.com/users/login/kakao/callback"
         token_request = requests.get(
             f"https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id={client_id}&redirect_uri={redirect_uri}&code={code}"
         )
