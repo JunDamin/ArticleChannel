@@ -7,14 +7,20 @@
 {% block content %}
 
 <div class="container mx-auto flex justify-around pb-10">
-    <div class="lg:w-1/2 md:w-3/4 sm:w-3/4">
+    <div class="lg:w-1/2 md:w-3/4 px-5">
         <div class="flex w-full justify-between border-section">
             <div class="pb-1 content-around">
-                <h4 class="text-3xl font-medium h-full">{{article.title}}</h4>
-                <div class="flex justify-between">
-                    <span class="text-gray-700 font-bold">{{article.country.name}}</span>
-                    <span class="text-teal-800 font-bold px-5">{{article.get_article_field_display}}</span>
-                    <span class="mr-5 text-gray-700 font-bold">{{article.get_subject_type_display}}</span>
+                <div class="flex justify-between box-border">
+                    <h4 class="text-3xl font-medium h-full">{{article.title}}</h4>
+                </div>
+                <div class="flex w-3/4">
+                    <div class="justify-between w-full overflow-hidden ">
+                        <span class="text-gray-700 font-bold">{{article.country.name}}</span>
+                    </div>
+                    <div class="flex justify-between w-full overflow-hidden ">
+                        <span class="text-teal-800 font-bold px-5">{{article.get_article_field_display}}</span>
+                        <span class="mr-5 text-gray-700 font-bold">{{article.get_subject_type_display}}</span>
+                    </div>
                 </div>
             </div>
             <div>
