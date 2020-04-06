@@ -129,6 +129,8 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
+STATIC_ROOT = "/home/jundamin/jundamin.pythonanywhere.com/static"
+
 AUTH_USER_MODEL = "users.User"
 
-ALLOWED_HOSTS = ["jundamin.pythonanywhere.com", '127.0.0.1:8000']
+ALLOWED_HOSTS = ["jundamin.pythonanywhere.com", '127.0.0.1']

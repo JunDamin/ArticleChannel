@@ -15,6 +15,5 @@ class CreateArticleForm(forms.ModelForm):
         return article
 
 
-class SearchForm(forms.ModelForm):
-
+class SearchForm(forms.Form):
     country = CountryField(default="KR").formfield()
