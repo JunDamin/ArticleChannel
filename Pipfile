@@ -11,6 +11,7 @@ django-dotenv = "*"
 django-countries = "*"
 requests = "*"
 pillow = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.7"
