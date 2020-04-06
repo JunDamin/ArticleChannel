@@ -3,6 +3,7 @@ from django.views.generic import ListView, DetailView, View, UpdateView, FormVie
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import render, redirect, reverse
+from django.core.paginator import Paginator
 from . import models, forms
 
 # Create your views here.
@@ -61,3 +62,48 @@ def delete_article(request, pk):
         return redirect((reverse("core:home")))
     except models.Article.DoesNotExist:
         return redirect((reverse("core:home")))
+
+class SearchView(View):
+
+    """ SearchView Definition """
+
+    def get(self, request):
+
+        country = request.GET.get("country")
+
+        if country:
+
+            form = forms.SearchForm(request.GET)
+
+            if form.is_valid():
+
+                subject_type = form.cleaned_data.get("subject_type")
+                article_field = form.cleaned_data.get("article_field")
+
+                filter_args = {}
+
+                filter_args["country"] = country
+
+                if subject_type is not None:
+                    filter_args["subject_type"] = subject_type
+
+                if article_field is not None:
+                    filter_args["article_field"] = article_field
+
+                qs = models.Article.objects.filter(**filter_args).order_by("-created")
+
+                paginator = Paginator(qs, 10, orphans=5)
+
+                page = request.GET.get("page", 1)
+
+                articles = paginator.get_page(page)
+
+                return render(
+                    request, "article/search.html", {"form": form, "articles": articles}
+                )
+
+        else:
+
+            form = forms.SearchForm()
+
+            return render(request, "articles/search.html", {"form": form})

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "css": "gulp"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
     "autoprefixer": "^9.7.5",
     "gulp": "^4.0.2",
     "gulp-csso": "^4.0.1",
+    "gulp-postcss": "^8.0.0",
     "gulp-sass": "^4.0.2",
     "node-sass": "^4.13.1",
     "tailwindcss": "^1.2.0"

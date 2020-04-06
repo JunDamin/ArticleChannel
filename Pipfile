@@ -9,6 +9,8 @@ verify_ssl = true
 django = "*"
 django-dotenv = "*"
 django-countries = "*"
+requests = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.7"

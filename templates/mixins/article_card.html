@@ -1,0 +1,15 @@
+<div class="w-1/4 mb-10 px-2">
+    <a href="{% url 'articles:detail' article.pk %}">
+        <div class="w-full h-64 bg-cover bg-center rounded-lg mb-2 border"></div>
+        <div class="flex justify-between mb-2 truncate">
+            <div class="w-4/5 overflow-hidden flex">
+                <span class="text-sm text-gray-600 block truncate">{{article.country.name}} {{article.subject_type}} </span>
+            </div>
+            <span class="text-sm flex items-center">
+                <i class="fas fa-star text-red-500 text-xs mr mr-1"></i>
+                {{article.article_field}}
+            </span>
+        </div>
+        <span class="text-black w-11/12 block truncate">{{article.title}}</span>
+    </a>
+</div>

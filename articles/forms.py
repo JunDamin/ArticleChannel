@@ -1,4 +1,5 @@
 from django import forms
+from django_countries.fields import CountryField
 from . import models
 
 
@@ -12,3 +13,8 @@ class CreateArticleForm(forms.ModelForm):
     def save(self, *args, **kwargs):
         article = super().save(commit=False)
         return article
+
+
+class SearchForm(forms.ModelForm):
+
+    country = CountryField(default="KR").formfield()

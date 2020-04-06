@@ -6,4 +6,5 @@ app_name = "articles"
 urlpatterns = [path("create/", views.CreateArticleView.as_view(), name="create"),
     path("<int:pk>", views.ArticleDetail.as_view(), name="detail"),
     path("<int:pk>/edit/", views.EditArticleView.as_view(), name="edit"),
-    path("<int:pk>/delete/", views.delete_article, name="delete", ),]
+    path("<int:pk>/delete/", views.delete_article, name="delete", ),
+    path("search", views.SearchView.as_view(), name="search", ),]
