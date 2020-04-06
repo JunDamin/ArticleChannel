@@ -205,7 +205,7 @@ def kakao_callback(request):
         return redirect(reverse("core:home"))
     except KakaoException as e:
         messages.error(request, e)
-        return redirect(reverse("users:login"))
+        return redirect(reverse("user:login"))
 
 
 class UserProfileView(DetailView):
@@ -231,8 +231,9 @@ class UpdateProfileView(mixins.loggedInOnlyView, UpdateView):
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class=form_class)
-        form.fields["birthdate"].widget.attrs = {"placeholder": "Birthdate"}
+        form.fields["office"].widget.attrs = {"placeholder": "Office name"}
         form.fields["first_name"].widget.attrs = {"placeholder": "First name"}
+        form.fields["last_name"].widget.attrs = {"placeholder": "Last name"}
         return form
 
 

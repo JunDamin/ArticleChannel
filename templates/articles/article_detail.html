@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+{{article.title}}
+{% endblock page_title %}
+
+{% block content %}
+
+<div class="mt-5 container max-w-full h-75vh flex md-20">
+    <div class="h-full w-1/2 bg-center bg-cover"></div>
+    <div class="h-full w-1/2 flex flex-wrap">
+    </div>
+</div>
+
+<div class="container mx-auto flex justify-around pb-10">
+    <div class="w-1/2">
+        <div class="flex w-full justify-between border-section">
+            <div class="pb-1 content-around">
+                <h4 class="text-3xl font-medium h-full">{{article.title}}</h4>
+                <div class="flex justify-between w-full">
+                    <span class="text-gray-700 font-bold">{{article.country.name}}</span>
+                    <span class="text-teal-800 font-bold">{{article.get_article_field_display}}</span>
+                    <span class="mr-5 text-gray-700 font-bold">{{article.get_subject_type_display}}</span>
+                </div>
+            </div>
+            <div>
+                <a href="{{article.author.get_absolute_url}}" class="flex flex-col items-center">
+                    {% include "mixins/user_avatar.html" with user=article.author %}
+                    <span class="mt-2 text-gray-500">{{article.author.first_name}}</span>
+                </a>
+            </div>
+        </div>
+        <div class="border-section">
+            <p class="w-full p-5">
+                {{article.content|linebreaks}}
+            </p>
+        </div>
+        {% if user == article.author %}
+            <div class="flex flex-col w-full">
+                <a href="{% url 'article:edit' article.pk %}" class="btn-link bg-teal-500 mb-3">Edit Article</a>
+                <a href="{% url 'article:delete' article.pk %}" class="btn-link">Delete Article</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}
