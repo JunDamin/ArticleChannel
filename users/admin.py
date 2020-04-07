@@ -1,12 +1,14 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+from import_export.admin import ImportExportMixin
 from . import models
+
 
 # Register your models here.
 
 
 @admin.register(models.Country)
-class CustomUserAdmin(admin.ModelAdmin):
+class CustomUserAdmin(ImportExportMixin, admin.ModelAdmin):
 
     list_display = ("name",)
 
@@ -14,7 +16,7 @@ class CustomUserAdmin(admin.ModelAdmin):
 
 
 @admin.register(models.Department)
-class CustomUserAdmin(admin.ModelAdmin):
+class CustomUserAdmin(ImportExportMixin, admin.ModelAdmin):
 
     fieldsets = (
         ("Organization", {"fields": ("name", "koica_code")},),
