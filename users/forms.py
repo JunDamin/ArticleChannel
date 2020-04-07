@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.admin.widgets import FilteredSelectMultiple
 from . import models
 
 
@@ -66,3 +67,10 @@ class SignUpForm(forms.ModelForm):
         user.username = email
         user.set_password(password)
         user.save()
+
+
+class EditDepartmentForm(forms.ModelForm):
+    name = forms.CharField(label="Name")
+    countries = forms.MultipleChoiceField(
+        widget=forms.widgets.CheckboxSelectMultiple(),
+    )

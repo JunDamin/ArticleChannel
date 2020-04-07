@@ -272,3 +272,15 @@ def switch_hosting(request):
     except KeyError:
         request.session["is_hosting"] = True
     return redirect(reverse("core:home"))
+
+
+class EditDepartmentView(mixins.loggedInOnlyView, UpdateView):
+
+    model = models.Department
+    template_name = "users/edit_department.html"
+    fields = (
+        "name",
+        "countries",
+    )
+    success_message = "Department Updated"
+    success_url = reverse_lazy("core:home")
