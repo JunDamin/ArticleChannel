@@ -6,7 +6,7 @@ from . import models
 @admin.register(models.Department)
 class CustomUserAdmin(admin.ModelAdmin):
     
-    fieldsets = (("Organization",{"fields": ("namme",) },),)
+    fieldsets = (("Organization",{"fields": ("name", 'koica_code') },),)
     list_filter =  ("name",)
 
     list_display = (

@@ -128,7 +128,7 @@ def github_callback(request):
                         user.save()
                     login(request, user)
                     messages.success(request, f"Welcome back {user.first_name}")
-                    return redirect(reverse("core:home"))
+                    return redirect(reverse("user:login"))
                 else:
                     raise GithubException("Can't get your profile")
         else:
@@ -223,7 +223,6 @@ class UpdateProfileView(mixins.loggedInOnlyView, UpdateView):
         "first_name",
         "last_name",
     )
-
     success_message = "Profile Updated"
 
     def get_object(self, queryset=None):
