@@ -288,7 +288,5 @@ class EditDepartmentView(mixins.loggedInOnlyView, UpdateView):
 
 class DepartmentListView(mixins.loggedInOnlyView, ListView):
     model = models.Department
-    paginate_by = 12
-    paginate_orphans = 5
     ordering = "created"
     context_object_name = "departments"
