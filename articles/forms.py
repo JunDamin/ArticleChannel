@@ -7,7 +7,7 @@ class CreateArticleForm(forms.ModelForm):
     class Meta:
         model = models.Article
         fields = (
-           "country", "article_date", "title", "subject_type", "article_field", "content", "article_source", "article_link",
+           "country", "article_date", "title", "subject_type", "sector", "content", "article_source", "article_link",
         )
 
     def save(self, *args, **kwargs):

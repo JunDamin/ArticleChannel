@@ -10,7 +10,7 @@ class ArticleAdmin(ImportExportMixin, admin.ModelAdmin):
         (
             "Basic Info",
             {
-                "fields": ("author", "country", "article_date", "title", "subject_type", "article_field",)
+                "fields": ("author", "country", "article_date", "title", "subject_type", "sector",)
             },
         ),
         (
@@ -21,13 +21,13 @@ class ArticleAdmin(ImportExportMixin, admin.ModelAdmin):
         ),
     )
 
-    list_display = ("author", "country", "article_date", "title", "subject_type", "article_field", "article_source", "article_link",
+    list_display = ("author", "country", "article_date", "title", "subject_type", "sector", "article_source", "article_link",
         
     )
 
     list_filter = (
         "subject_type",
-        "article_field",
+        "sector",
         "country",
     )
 

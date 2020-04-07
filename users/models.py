@@ -1,8 +1,14 @@
 from django.contrib.auth.models import AbstractUser
 from django.shortcuts import reverse
 from django.db import models
+from core import models as core_models
 
 # Create your models here.
+
+class Department(core_models.TimeStampedModel):
+    name = models.CharField(max_length=255)
+    koica_code = models.CharField(max_length=255)
+
 
 class User(AbstractUser):
 
@@ -17,10 +23,11 @@ class User(AbstractUser):
         (LOGIN_GITHUB, "Github"),
         (LOGIN_KAKAO, "Kakao"),
     )
+
     avatar = models.ImageField(upload_to="avatars", blank=True)
     bio = models.TextField(default="", blank=True)
+    department = models.ForeignKey('Department', related_name='department', on_delete=models.PROTECT, blank=True, null=True)
 
-    office = models.CharField(max_length=255)
     email_verified = models.BooleanField(default=False)
     email_secret = models.CharField(max_length=64, default="", blank=True)
     login_method = models.CharField(

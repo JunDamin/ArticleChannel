@@ -3,12 +3,22 @@ from django.contrib.auth.admin import UserAdmin
 from . import models
 # Register your models here.
 
+@admin.register(models.Department)
+class CustomUserAdmin(admin.ModelAdmin):
+    
+    fieldsets = (("Organization",{"fields": ("namme",) },),)
+    list_filter =  ("name",)
+
+    list_display = (
+        "name",)
+
+
 @admin.register(models.User)
 class CustomUserAdmin(admin.ModelAdmin):
     
-    fieldsets = (("Organization",{"fields": ("office",) },),) + UserAdmin.fieldsets
+    fieldsets = (("Organization",{"fields": ("department",) },),) + UserAdmin.fieldsets
 
-    list_filter = UserAdmin.list_filter + ("office",)
+    list_filter = UserAdmin.list_filter + ("department",)
 
     list_display = (
         "username",
@@ -16,4 +26,4 @@ class CustomUserAdmin(admin.ModelAdmin):
         "last_name",
         "email",
         "is_active",
-        "office",)
+        "department",)

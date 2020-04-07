@@ -39,7 +39,7 @@ class EditArticleView(UpdateView):
     model = models.Article
     template_name = "articles/article_edit.html"
     fields = (
-           "country", "article_date", "title", "subject_type", "article_field", "content", "article_source", "article_link",
+           "country", "article_date", "title", "subject_type", "sector", "content", "article_source", "article_link",
         )
 
     def get_object(self, queryset=None):
@@ -78,7 +78,7 @@ class SearchView(View):
             if form.is_valid():
 
                 subject_type = form.cleaned_data.get("subject_type")
-                article_field = form.cleaned_data.get("article_field")
+                sector = form.cleaned_data.get("sector")
 
                 filter_args = {}
 
@@ -87,8 +87,8 @@ class SearchView(View):
                 if subject_type is not None:
                     filter_args["subject_type"] = subject_type
 
-                if article_field is not None:
-                    filter_args["article_field"] = article_field
+                if sector is not None:
+                    filter_args["sector"] = sector
 
                 qs = models.Article.objects.filter(**filter_args).order_by("-created")
 
