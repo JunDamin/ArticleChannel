@@ -115,12 +115,13 @@ def github_callback(request):
                             raise GithubException(
                                 f"Please log in with: {user.login_method}"
                             )
-                    except user.Models.DoesNotExist:
+                    except models.User.DoesNotExist:
                         user = models.User.objects.create(
                             username=email,
                             first_name=name,
                             bio=bio,
                             email=email,
+                            department=1,
                             login_method=models.User.LOGIN_GITHUB,
                             email_verified=True,
                         )
@@ -193,6 +194,7 @@ def kakao_callback(request):
                 email=email,
                 username=email,
                 first_name=nickname,
+                department=1,
                 login_method=models.User.LOGIN_KAKAO,
                 email_verified=True,
             )
