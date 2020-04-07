@@ -126,9 +126,12 @@ def github_callback(request):
                         )
                         user.set_unusable_password()
                         user.save()
+                        login(request, user)
+                        messages.success(request, f"Welcome {user.first_name}")
+                        return redirect(reverse("user:update"))
                     login(request, user)
                     messages.success(request, f"Welcome back {user.first_name}")
-                    return redirect(reverse("user:login"))
+                    return redirect(reverse("core:home"))
                 else:
                     raise GithubException("Can't get your profile")
         else:
@@ -200,6 +203,9 @@ def kakao_callback(request):
                 user.avatar.save(
                     f"{nickname}-avatar", ContentFile(photo_request.content)
                 )
+            messages.success(request, f"Welcome {user.first_name}")
+            login(request, user)
+            return redirect(reverse("user:update"))
         messages.success(request, f"Welcome back {user.first_name}")
         login(request, user)
         return redirect(reverse("core:home"))

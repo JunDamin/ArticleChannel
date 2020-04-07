@@ -8,6 +8,7 @@ from . import models, forms
 
 # Create your views here.
 
+
 class HomeView(ListView):
     model = models.Article
     paginate_by = 12
@@ -15,11 +16,18 @@ class HomeView(ListView):
     ordering = "created"
     context_object_name = "articles"
 
+
 class CreateArticleView(FormView):
-    
+
     form_class = forms.CreateArticleForm
     template_name = "articles/article_create.html"
-    
+
+    def get_form_kwargs(self):
+        kwargs = super(CreateArticleView, self).get_form_kwargs()
+        kwargs["user"] = self.request.user
+
+        return kwargs
+
     def form_valid(self, form):
         article = form.save()
         article.author = self.request.user
@@ -39,8 +47,15 @@ class EditArticleView(UpdateView):
     model = models.Article
     template_name = "articles/article_edit.html"
     fields = (
-           "country", "article_date", "title", "subject_type", "sector", "content", "article_source", "article_link",
-        )
+        "country",
+        "article_date",
+        "title",
+        "subject_type",
+        "sector",
+        "content",
+        "article_source",
+        "article_link",
+    )
 
     def get_object(self, queryset=None):
         article = super().get_object(queryset=queryset)
@@ -48,6 +63,7 @@ class EditArticleView(UpdateView):
             raise Http404()
 
         return article
+
 
 @login_required
 def delete_article(request, pk):
@@ -62,6 +78,7 @@ def delete_article(request, pk):
         return redirect((reverse("core:home")))
     except models.Article.DoesNotExist:
         return redirect((reverse("core:home")))
+
 
 class SearchView(View):
 
