@@ -127,8 +127,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+<<<<<<< HEAD
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+=======
+#STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+>>>>>>> 3cc089e9918b6bd155e77033f69b5af6becc7e64
 
 STATIC_ROOT = "/home/jundamin/jundamin.pythonanywhere.com/static"
 
