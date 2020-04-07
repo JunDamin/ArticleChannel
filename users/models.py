@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.shortcuts import reverse
 from django.db import models
+from django_countries.fields import CountryField
 from core import models as core_models
 
 # Create your models here.
@@ -8,13 +9,13 @@ from core import models as core_models
 class Department(core_models.TimeStampedModel):
     name = models.CharField(max_length=255)
     koica_code = models.CharField(max_length=255)
+    workon_countries = CountryField(multiple=True, blank=True)
 
     def __str__(self):
         return self.name
 
-class User(AbstractUser):
 
-    
+class User(AbstractUser):
     
     LOGIN_EMAIL = "email"
     LOGIN_GITHUB = "github"

@@ -17,9 +17,9 @@ class HomeView(ListView):
 
 class CreateArticleView(FormView):
     
-    template_name = "articles/article_create.html"
     form_class = forms.CreateArticleForm
-
+    template_name = "articles/article_create.html"
+    
     def form_valid(self, form):
         article = form.save()
         article.author = self.request.user
