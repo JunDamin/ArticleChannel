@@ -1,6 +1,6 @@
 import os
 import requests
-from django.views.generic import FormView, DetailView, UpdateView
+from django.views.generic import FormView, DetailView, UpdateView, ListView
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate, login, logout
@@ -121,7 +121,6 @@ def github_callback(request):
                             first_name=name,
                             bio=bio,
                             email=email,
-                            department=1,
                             login_method=models.User.LOGIN_GITHUB,
                             email_verified=True,
                         )
@@ -194,7 +193,6 @@ def kakao_callback(request):
                 email=email,
                 username=email,
                 first_name=nickname,
-                department=1,
                 login_method=models.User.LOGIN_KAKAO,
                 email_verified=True,
             )
@@ -286,3 +284,11 @@ class EditDepartmentView(mixins.loggedInOnlyView, UpdateView):
     )
     success_message = "Department Updated"
     success_url = reverse_lazy("core:home")
+
+
+class DepartmentListView(mixins.loggedInOnlyView, ListView):
+    model = models.Department
+    paginate_by = 12
+    paginate_orphans = 5
+    ordering = "created"
+    context_object_name = "departments"

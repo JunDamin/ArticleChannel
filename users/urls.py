@@ -17,8 +17,9 @@ urlpatterns = [
     path("<int:pk>/", views.UserProfileView.as_view(), name="profile"),
     path("switch-hosting/", views.switch_hosting, name="switch-hosting"),
     path(
-        "department/<int:pk>",
+        "departments/<int:pk>",
         views.EditDepartmentView.as_view(),
         name="edit-department",
     ),
+    path("departments/", views.DepartmentListView.as_view(), name="departments",),
 ]

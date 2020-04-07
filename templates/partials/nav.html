@@ -3,7 +3,8 @@
     {% if user.is_authenticated %}
         <li class="nav_link"><a href="{% url "article:create" %}">Create Article</a></li>
         <li class="nav_link"><a href="{% url "user:profile" user.pk %}">Profile</a></li>
-        <li class="nav_link"><a href="{% url "user:edit-department" user.department.pk %}">Edit Department</a></li>
+        <li class="nav_link"><a href="{% url "user:departments" %}" class="text-gray-700 font-medium">My Department</a></li>
+        
         <li class="nav_link"><a href="{% url "user:logout" %}">Log out</a></li>
     {% else %}
         <li class="nav_link"><a href="{% url "user:login" %}">Log in</a> </li>
