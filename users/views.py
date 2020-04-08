@@ -278,10 +278,6 @@ class EditDepartmentView(mixins.loggedInOnlyView, UpdateView):
 
     model = models.Department
     template_name = "users/edit_department.html"
-    fields = (
-        "name",
-        "countries",
-    )
     success_message = "Department Updated"
     success_url = reverse_lazy("core:home")
 
