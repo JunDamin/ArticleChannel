@@ -71,6 +71,4 @@ class SignUpForm(forms.ModelForm):
 
 class EditDepartmentForm(forms.ModelForm):
     name = forms.CharField(label="Name")
-    countries = forms.MultipleChoiceField(
-        widget=forms.widgets.CheckboxSelectMultiple(),
-    )
+    countries = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,)

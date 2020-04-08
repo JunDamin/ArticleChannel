@@ -41,6 +41,16 @@ select {
     @apply h-full;
 }
 
+li {
+    label {
+        @apply flex;
+        input {
+                @apply w-10 h-5;
+            }
+
+    }
+}
+
 form {
     .input{
         @apply mb-3 w-full;
