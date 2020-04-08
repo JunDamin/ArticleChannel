@@ -277,6 +277,7 @@ def switch_hosting(request):
 class EditDepartmentView(mixins.loggedInOnlyView, UpdateView):
 
     model = models.Department
+    form_class = forms.EditDepartmentForm
     template_name = "users/edit_department.html"
     success_message = "Department Updated"
     success_url = reverse_lazy("core:home")
