@@ -86,38 +86,42 @@ class SearchView(View):
 
     def get(self, request):
 
-        country = request.GET.get("country")
+        form = forms.SearchForm(request.GET)
 
-        if country:
+        if form.is_valid():
 
-            form = forms.SearchForm(request.GET)
+            title = form.cleaned_data.get("title")
+            country = form.cleaned_data.get("country")
+            subject_type = form.cleaned_data.get("subject_type")
+            sector = form.cleaned_data.get("sector")
 
-            if form.is_valid():
+            filter_args = {}
 
-                subject_type = form.cleaned_data.get("subject_type")
-                sector = form.cleaned_data.get("sector")
+            if title:
+                filter_args["title__contains"] = title
 
-                filter_args = {}
-
+            if country:
                 filter_args["country"] = country
 
-                if subject_type is not None:
-                    filter_args["subject_type"] = subject_type
+            if subject_type:
+                filter_args["subject_type"] = subject_type
 
-                if sector is not None:
-                    filter_args["sector"] = sector
+            if sector:
+                filter_args["sector"] = sector
 
-                qs = models.Article.objects.filter(**filter_args).order_by("-created")
+            qs = models.Article.objects.filter(**filter_args).order_by("-created")
 
-                paginator = Paginator(qs, 10, orphans=5)
+            paginator = Paginator(qs, 10, orphans=5)
 
-                page = request.GET.get("page", 1)
+            page = request.GET.get("page", 1)
 
-                articles = paginator.get_page(page)
+            articles = paginator.get_page(page)
 
-                return render(
-                    request, "article/search.html", {"form": form, "articles": articles}
-                )
+            print(articles)
+
+            return render(
+                request, "articles/search.html", {"form": form, "articles": articles},
+            )
 
         else:
 

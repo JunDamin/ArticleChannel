@@ -40,5 +40,17 @@ class CreateArticleForm(forms.ModelForm):
         return article
 
 
-class SearchForm(forms.Form):
-    country = CountryField(default="KR").formfield()
+class SearchForm(forms.ModelForm):
+    class Meta:
+        model = models.Article
+        fields = (
+            "country",
+            "title",
+            "subject_type",
+            "sector",
+        )
+
+    def __init__(self, *args, **kwargs):
+        super(SearchForm, self).__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].required = False
