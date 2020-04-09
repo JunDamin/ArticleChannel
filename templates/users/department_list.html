@@ -7,24 +7,16 @@ Departments
 
 {% block content %}
 
-<div class="container mx-auto pb-10">
-
-    <div class="flex flex-wrap justify-center mb-10">
+    <div class="container lg:w-5/12 md:w-1/2 xl:w-1/2 mx-auto my-10 flex flex-col items-center border p-6 border-gray-400">
         {% for department in departments %}
             {% if user.department == department %}
                 <a href="{% url "user:edit-department" department.pk %}" class="text-xl text-teal-500">{{department.name}}<a>
             {% endif %}
         {% endfor %}
-    </div>
-    <div class="flex items-center justify-center mx-auto container">
-        {% if page_obj.has_previous %}
-            <a href="?page={{page_obj.previous_page_number}}" class="text-teal-500">
-                <i class="fas fa-arrow-left fa-lg"></i>
-            </a>
+        {% if user.department == none %}
+            <h3>Please set your department</h3>
+            <a href="{% url 'user:update' %}" class="btn bg-red-500 mt-5 text-white">Edit Profile</a>
         {% endif %}
-      
-            
     </div>
-</div>
 
 {% endblock content %}
