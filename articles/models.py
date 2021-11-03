@@ -4,7 +4,8 @@ from django_countries.fields import CountryField
 from core import models as core_models
 
 
-# Create your models here.
+# Create your models here. de(self):
+    # TODO: write code...
 
 
 class Article(core_models.TimeStampedModel):
